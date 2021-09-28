@@ -8,7 +8,8 @@
 void texture_load(texture_t* texture, const char* path)
 {
     stbi_set_flip_vertically_on_load(true);
-    texture->data = stbi_load(path, &texture->width, &texture->height, &texture->channel_count, 0);
+    int channel_count;
+    texture->data = stbi_load(path, &texture->width, &texture->height, &channel_count, 0);
 
     if(texture->data == NULL)
     {
@@ -16,6 +17,7 @@ void texture_load(texture_t* texture, const char* path)
         exit(-1);
     }
     texture_init(texture);
+    free(texture->data);
 }
 void texture_init(texture_t* texture)
 {
@@ -38,7 +40,7 @@ void texture_bind(texture_t* texture, uint32_t index)
 }
 void texture_destroy(texture_t* texture)
 {
-    free(texture->data);
+    glDeleteTextures(1, &texture->id);
 }
 
 sub_texture_t sub_texture_create(texture_t* texture, vec2_t coords, vec2_t size)

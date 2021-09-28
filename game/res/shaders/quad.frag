@@ -12,11 +12,15 @@ uniform sampler2D u_textures[16];
 void main()
 {
     //color = v_color;
-    color = texture(u_textures[int(v_tex)], v_uv) * v_color;
-    
+    vec4 tex_color = texture(u_textures[int(v_tex)], v_uv) * v_color;
+    if(tex_color.a == 0)
+       discard;
+    color = tex_color;
 
     //Gamma correction
     float gamma = 2.2;
     color.rgb = pow(color.rgb, vec3(1.0/gamma));
     color.a = texture(u_textures[int(v_tex)], v_uv).a;
+
+    
 }

@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "main.h": "c"
+        "main.h": "c",
+        "__node_handle": "c",
+        "ratio": "c",
+        "__locale": "c",
+        "locale": "c"
     }
 }

@@ -8,7 +8,7 @@ int main(void)
     renderer_init(&data.renderer);
 
     start(&data);
-    while (!data.window.closed)
+    do
     {
         //calc delta time
         static float last_time;
@@ -28,15 +28,17 @@ int main(void)
         renderer_start(&data.renderer);
         
         update(&data, delta_time);
+        scene_update(&data.scene, &data.renderer, delta_time);
         
         renderer_end(&data.renderer);
         window_update(&data.window);
-    } 
+    } // 
+    while (!data.window.closed);
     
     close(&data);
 
     //destroy engine
-    //renderer_destroy(&data.renderer);
+    renderer_destroy(&data.renderer);
     window_destroy(&data.window);
 
     return 0;

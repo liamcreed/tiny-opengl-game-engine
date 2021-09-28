@@ -1,10 +1,9 @@
 #pragma once
 #include "math/types.h"
 
-typedef struct window_t
+typedef struct
 {
     int width, height;
-    
     const char* title;
 
     GLFWwindow* glfw_window_p;
@@ -163,7 +162,7 @@ vec2_t mouse_position(window_t* window);
 
 
 //------------------------------------------//
-typedef struct shader_t
+typedef struct 
 {
     uint32_t id;
 
@@ -180,26 +179,26 @@ void shader_destroy(shader_t* shader);
 void shader_set_uniform_mat4(shader_t* shader, const char* name, mat4_t matrix);
 
 //------------------------------------------//
-typedef struct texture_t
+typedef struct 
 {
     uint32_t id;
 
-    int width, height, channel_count;
+    int width, height;
     unsigned char* data;
 }texture_t;
 
 void texture_load(texture_t* texture, const char* path);
 void texture_init(texture_t* texture);
-void texture_bind(texture_t* texture, uint32_t index);
+void texture_bind(texture_t* texture, const uint32_t index);
 void texture_destroy(texture_t* texture);
 
-typedef struct sub_texture_t
+typedef struct 
 {
     vec2_t tex_coords[4];
 }sub_texture_t;
-sub_texture_t sub_texture_create(texture_t* texture, vec2_t coords, vec2_t size);
+sub_texture_t sub_texture_create(texture_t* texture, const vec2_t coords, const vec2_t size);
 //------------------------------------------//
-typedef struct vertex_t
+typedef struct 
 {
     vec3_t position;
     vec4_t color;
@@ -210,7 +209,7 @@ typedef struct vertex_t
 
 //------------------------------------------//
 
-typedef struct renderer_t
+typedef struct 
 {
     uint32_t max_quad_count;
 
@@ -234,8 +233,8 @@ typedef struct renderer_t
 void renderer_init(renderer_t* renderer);
 void renderer_start(renderer_t* renderer);
 void renderer_end(renderer_t* renderer);
-void renderer_set_view_proj(renderer_t* renderer, mat4_t view, mat4_t proj);
+void renderer_set_view_proj(renderer_t* renderer, const mat4_t view, const mat4_t proj);
 void renderer_destroy(renderer_t* renderer);
 
-void draw_quad(renderer_t* renderer, vec3_t position, vec3_t size, vec4_t color);
-void draw_textured_quad(renderer_t* renderer, vec3_t position, vec3_t size, vec4_t color, texture_t* texture_sheet, sub_texture_t* sub_texture);
+void draw_quad(renderer_t* renderer, const vec3_t position, const vec3_t size, const vec4_t color);
+void draw_textured_quad(renderer_t* renderer, const vec3_t position, const vec3_t size, const vec4_t color, const texture_t* texture_sheet, const sub_texture_t* sub_texture);

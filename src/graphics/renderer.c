@@ -3,8 +3,11 @@
 
 void renderer_init(renderer_t* renderer)
 {
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_DEPTH_TEST);  
+    glDepthFunc(GL_LESS);  
+
     glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     renderer->index_count = 0;
     renderer->tex_slot_count = 1;
@@ -76,7 +79,7 @@ void renderer_start(renderer_t* renderer)
     renderer->index_count = 0;
     renderer->tex_slot_count = 1;
 }
-void renderer_set_view_proj(renderer_t* renderer, mat4_t view, mat4_t proj)
+void renderer_set_view_proj(renderer_t* renderer, const mat4_t view, const mat4_t proj)
 {
     int loc = glGetUniformLocation(renderer->quad_shader.id, "u_view_mat");
     if(loc == -1)
@@ -124,11 +127,11 @@ void renderer_destroy(renderer_t* renderer)
     shader_destroy(&renderer->quad_shader);
 }
 
-void draw_quad(renderer_t* renderer, vec3_t position, vec3_t size, vec4_t color)
+void draw_quad(renderer_t* renderer, const vec3_t position, const vec3_t size, const vec4_t color)
 {
     //white texture
     float tex_index = 0.0f;
-    vec2_t no_uv = vec2_new(0.0f, 0.0f);
+    vec2_t no_uv = {0.0f, 0.0f};
     renderer->quad_vertex_buffer_ptr->position = vec3_new(position.x - (size.x/2), position.y - (size.y/2), position.z);
     renderer->quad_vertex_buffer_ptr->color = color;
     renderer->quad_vertex_buffer_ptr->uv = no_uv;
@@ -155,7 +158,7 @@ void draw_quad(renderer_t* renderer, vec3_t position, vec3_t size, vec4_t color)
     renderer->index_count+=6;
 }
 
-void draw_textured_quad(renderer_t* renderer, vec3_t position, vec3_t size, vec4_t color, texture_t* texture_sheet, sub_texture_t* sub_texture)
+void draw_textured_quad(renderer_t* renderer, const vec3_t position, const vec3_t size, const vec4_t color, const texture_t* texture_sheet, const sub_texture_t* sub_texture)
 {
     //check if texture is already used
     float tex_index = 0.0f;
