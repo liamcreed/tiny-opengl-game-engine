@@ -50,7 +50,7 @@ mat4_t mat4_ortho(const float left, const float right, const float top, const fl
 
     mat4_ret.data[2][0] = 0;
     mat4_ret.data[2][1] = 0;
-    mat4_ret.data[2][2] = -2 / (far - near);
+    mat4_ret.data[2][2] = 1 / (far - near);
     mat4_ret.data[2][3] = 0;
     
     mat4_ret.data[3][0] = -((right + left) / (right - left));

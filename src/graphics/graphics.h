@@ -160,7 +160,6 @@ bool mouse_button_pressed(window_t* window, mouse_button button);
 
 vec2_t mouse_position(window_t* window);
 
-
 //------------------------------------------//
 typedef struct 
 {

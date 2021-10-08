@@ -1,9 +1,7 @@
 {
     "files.associations": {
-        "main.h": "c",
-        "__node_handle": "c",
-        "ratio": "c",
-        "__locale": "c",
-        "locale": "c"
+        "pch.h": "c",
+        "graphics.h": "c",
+        "ecs.h": "c"
     }
 }

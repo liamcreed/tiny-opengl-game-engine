@@ -119,7 +119,6 @@ void update(game_data_t *data, float delta_time)
     }else 
         data->scene.physics_components[player].velocity.y = 0;
     
-
     /* typedef struct 
         {
             vec2_t min;
