@@ -49,6 +49,7 @@ void start(game_data_t *data)
         MIDDLE,
         FOREGROUND
     } layers;
+    
     npc = scene_create_entity(&data->scene, "npc");
     data->scene.transform_components[npc].size.y = 2.0f;
     data->scene.transform_components[npc].position.z = MIDDLE;
