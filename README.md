@@ -1,2 +1,5 @@
-# OpenGL-2D-game
-2d opengl game
+# tiny opengl game engine
+
+Features
+- 2D batch renderer
+- Enitity component system
