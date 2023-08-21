@@ -3,6 +3,8 @@
 Features
 - 2D batch renderer
 - Enitity component system
+- Simple 2D collision detection
+
 
 
 
